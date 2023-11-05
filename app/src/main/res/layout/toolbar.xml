@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/widgetBackgroundWhite"
+    android:elevation="5dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/widgetBackgroundWhite">
+
+        <!--- Back Arrow -->
+        <TextView
+            android:id="@+id/backArrow"
+            style="@style/word_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25" />
+
+
+
+        <!--- Page Title -->
+        <TextView
+            android:id="@+id/textView"
+            style="@style/word_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".50"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/title" />
+
+        <!--- App Logo -->
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            app:srcCompat="@drawable/logo" />
+    </LinearLayout>
+</androidx.appcompat.widget.Toolbar>

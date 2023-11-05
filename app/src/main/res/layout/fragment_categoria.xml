@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#C6122000"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    tools:context=".ui.CategoriaFragment">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CATEGORIA FRAGMENT" />
+
+    <!---Ordenar Por Nombre-->
+
+    <!---RecyclerView de Platos-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_item_box"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/big_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/recyclerview_item_box" />
+
+    <!---Botón de Añadir-->
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/buttons"
+        android:gravity="center"
+        android:text="Añadir"
+        android:onClick="onClick"/>
+</LinearLayout>
+
