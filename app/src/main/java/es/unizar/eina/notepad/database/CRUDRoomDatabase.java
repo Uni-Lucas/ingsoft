@@ -11,22 +11,27 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Note.class}, version = 1, exportSchema = false)
-public abstract class NoteRoomDatabase extends RoomDatabase {
+import es.unizar.eina.notepad.database.entities.Categoria;
+import es.unizar.eina.notepad.database.entities.Estado;
+import es.unizar.eina.notepad.database.entities.Pedido;
+import es.unizar.eina.notepad.database.entities.Plato;
 
-    public abstract NoteDao noteDao();
+@Database(entities = {Plato.class, Categoria.class, Pedido.class, Estado.class}, version = 2, exportSchema = false)
+public abstract class CRUDRoomDatabase extends RoomDatabase {
 
-    private static volatile NoteRoomDatabase INSTANCE;
+    public abstract CRUDDao CRUDDao();
+
+    private static volatile CRUDRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static NoteRoomDatabase getDatabase(final Context context) {
+    static CRUDRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (NoteRoomDatabase.class) {
+            synchronized (CRUDRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    NoteRoomDatabase.class, "note_database")
+                                    CRUDRoomDatabase.class, "M16comidas_database")
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -45,13 +50,11 @@ public abstract class NoteRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more notes, just add them.
-                NoteDao dao = INSTANCE.noteDao();
-                dao.deleteAll();
+                CRUDDao dao = INSTANCE.CRUDDao();
+                dao.deleteAllPlatos();
 
-                Note note = new Note("Note 1's title", "Note 1's body");
-                dao.insert(note);
-                note = new Note("Note 2's title", "Note 2's body");
-                dao.insert(note);
+                Plato plato = new Plato("Spaghetti con tomate", "Spaghetti, tomate", 10.0, true);
+                dao.insertPlato(plato);
             });
         }
     };
